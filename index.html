@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>日记工作台</title>
+  <meta name="description" content="轻量个人日记工作台，离线记录你的每一天">
+  <meta name="theme-color" content="#FAFAF7">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="日记">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1 class="app-title">日记</h1>
+    <nav class="tabs">
+      <button class="tab active" data-view="compose">记录</button>
+      <button class="tab" data-view="history">历史</button>
+    </nav>
+  </header>
+
+  <main class="app-main">
+    <!-- 记录视图 -->
+    <section class="view view-compose active" id="view-compose">
+      <div class="compose-card">
+        <div class="camera-section">
+          <div class="camera-stage">
+            <video id="camera-video" autoplay playsinline muted></video>
+            <div class="camera-placeholder" id="camera-placeholder">
+              <p>开启摄像头，记录此刻</p>
+            </div>
+            <div class="recording-indicator" id="recording-indicator" hidden>
+              <span class="rec-dot"></span>
+              <span>录制中</span>
+              <span id="rec-timer">00:00</span>
+            </div>
+          </div>
+          <div class="camera-controls">
+            <button id="btn-start-camera" class="btn btn-soft">开启摄像头</button>
+            <button id="btn-capture-photo" class="btn btn-primary" disabled>拍照</button>
+            <button id="btn-record-video" class="btn btn-soft" disabled>录制视频</button>
+          </div>
+        </div>
+
+        <div class="media-preview" id="media-preview" hidden></div>
+
+        <textarea id="diary-text" class="diary-text" placeholder="今天发生了什么？此刻的心情如何……"></textarea>
+
+        <div class="compose-footer">
+          <span class="timestamp" id="current-time"></span>
+          <button id="btn-save" class="btn btn-primary" disabled>保存记录</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 历史视图 -->
+    <section class="view view-history" id="view-history">
+      <div class="history-list" id="history-list">
+        <p class="empty-hint">还没有记录，去写下第一条吧</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 媒体查看层 -->
+  <div class="viewer-overlay" id="viewer-overlay" hidden>
+    <button class="viewer-close" id="viewer-close" aria-label="关闭">×</button>
+    <div class="viewer-content" id="viewer-content"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
